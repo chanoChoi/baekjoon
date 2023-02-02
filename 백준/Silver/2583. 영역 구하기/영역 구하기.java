@@ -41,7 +41,6 @@ public class Main {
 			}
 		} // map 내의 색칠
 
-		int index = 0;
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[0].length; j++) {
