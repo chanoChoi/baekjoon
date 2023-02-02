@@ -34,9 +34,7 @@ public class Main {
 			ex = Integer.parseInt(posStr[3]);
 			for (int j = sx; j < ex; j++) {
 				for (int k = sy; k < ey; k++) {
-					if (!visited[j][k]) {
-						dfs(j, k);
-					}
+					visited[j][k] = true;
 				}
 			}
 		} // map 내의 색칠
@@ -57,17 +55,6 @@ public class Main {
 			sb.append(each).append(" ");
 		}
 		System.out.println(sb.substring(0, sb.length() - 1));
-	}
-
-	private static void dfs(int x, int y) {
-		visited[x][y] = true;
-		for (int i = 0; i < 4; i++) {
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if (nx < sx || nx >= ex || ny < sy || ny >= ey) continue;
-			if (visited[nx][ny]) continue;
-			dfs(nx, ny);
-		}
 	}
 
 	private static int dfs2(int x, int y, int cnt) {
