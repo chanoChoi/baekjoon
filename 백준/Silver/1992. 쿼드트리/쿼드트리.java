@@ -19,10 +19,6 @@ public class Main {
 
 	private static void quard(int y, int x, int size) {
 		char cur = map[y][x];
-		if (size == 1) {
-			sb.append(map[y][x]);
-			return;
-		}
 
 		for (int i = y; i < y + size; i++) {
 			for (int j = x; j < x + size; j++) {
