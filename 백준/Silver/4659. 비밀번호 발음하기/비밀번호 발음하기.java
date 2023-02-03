@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -10,41 +8,41 @@ public class Main {
 		String tmp = null;
 		StringBuilder sb = new StringBuilder();
 		while (!"end".equals(tmp = br.readLine())) {
-			Map<Integer, Integer> map = new HashMap<>() {{
-				put('a' - 'a', 0);
-				put('e' - 'a', 0);
-				put('i' - 'a', 0);
-				put('o' - 'a', 0);
-				put('u' - 'a', 0);
-			}};
+
 
 			boolean flag = false;
 			boolean pFlag = false;
 			int pre = -1;
-			int pCnt = 2;
-			int cCnt = 2;
+			int pCnt = 0;
+			int cCnt = 0;
 			for (char c : tmp.toCharArray()) {
-				if (--pCnt >= 0 && pre != c && map.containsKey(c - 'a')) {
+				if (isVowel(c)) {
 					pFlag = true;
-					cCnt = 2;
-				} else if (--cCnt >= 0 && pre != c && !map.containsKey(c - 'a')){
-					pCnt = 2;
+					pCnt = pCnt + 1;
+					cCnt = 0;
 				} else {
+					cCnt = cCnt + 1;
+					pCnt = 0;
+				}
+				if (pCnt == 3 || cCnt == 3) {
 					flag = true;
-					break;
 				}
-				if (c == 'e' || c == 'o') {
-					pre = -1;
-				} else {
-					pre = c;
+				if (pre == c && (c != 'e' && c != 'o')) {
+					flag = true;
 				}
+				pre = c;
 			}
-			if (!pFlag || flag) {
+			if (!pFlag) flag = true;
+			if (flag) {
 				sb.append(String.format("<%s> is not acceptable.%s", tmp, System.lineSeparator()));
 			} else {
 				sb.append(String.format("<%s> is acceptable.%s", tmp, System.lineSeparator()));
 			}
 		}
 		System.out.println(sb.toString());
+	}
+
+	private static boolean isVowel(int idx) {
+		return (idx == 'a' || idx == 'e' || idx == 'i' || idx == 'o' || idx == 'u');
 	}
 }
