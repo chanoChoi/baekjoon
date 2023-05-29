@@ -3,18 +3,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String given = br.readLine();
-        int l = 0, r = given.length() - 1;
-        while (l < r) {
-            char c1 = given.charAt(l++);
-            char c2 = given.charAt(r--);
-            if (c1 != c2) {
-                System.out.print(0);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        char[] chars = br.readLine().toCharArray();
+        for (int i = 0; i < chars.length / 2; i++) {
+            if (chars[i] != chars[chars.length - 1 - i])  {
+                System.out.println(0);
                 return;
             }
         }
-        System.out.print(1);
+        System.out.println(1);
     }
 }
